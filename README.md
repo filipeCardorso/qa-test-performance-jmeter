@@ -102,6 +102,9 @@ qa-test-performance-jmeter/
 │   └── compra-passagem-pico.jmx     # Plano de teste de pico (spike)
 ├── test-data/
 │   └── passengers.csv               # Dados variados de passageiros
+├── reports/
+│   ├── carga/                       # Relatório HTML do teste de carga
+│   └── pico/                        # Relatório HTML do teste de pico
 ├── run-tests.sh                     # Script de execução automatizada
 ├── .gitignore
 └── README.md
@@ -133,7 +136,7 @@ cd qa-test-performance-jmeter
 jmeter -t test-plans/compra-passagem-carga.jmx
 ```
 
-Após a execução, os relatórios HTML são gerados automaticamente em `results/`.
+Após a execução, os relatórios HTML são gerados automaticamente em `results/`. Os relatórios da última execução também estão disponíveis em `reports/` no repositório.
 
 ## Relatório de Execução
 

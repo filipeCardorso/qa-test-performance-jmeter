@@ -22,7 +22,7 @@ Simula um pico súbito de 100 threads em 5 segundos para avaliar a resiliência.
       </elementProp>
     </TestPlan>
     <hashTree>
-      <!-- ==================== TESTE DE CARGA ==================== -->
+      <!-- ==================== TESTE DE PICO (SPIKE) ==================== -->
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Teste de Pico (Spike) - Compra de Passagem" enabled="true">
         <stringProp name="ThreadGroup.comments">Pico súbito de 100 threads em 5 segundos.
 Simula aumento repentino de tráfego para avaliar resiliência e tempo de recuperação.</stringProp>
