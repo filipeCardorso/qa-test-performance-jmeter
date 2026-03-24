@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Compra de Passagem - Teste de Pico (Spike)" enabled="true">
-      <stringProp name="TestPlan.comments">Teste de pico (spike) para o fluxo de compra de passagem aérea no BlazDemo.
-Simula um pico súbito de 100 threads em 5 segundos para avaliar a resiliência.</stringProp>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Flight Purchase - Spike Test" enabled="true">
+      <stringProp name="TestPlan.comments">Spike test for the flight purchase flow on BlazDemo.
+Simulates a sudden spike of 100 threads in 5 seconds to evaluate resilience.</stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
@@ -22,10 +22,10 @@ Simula um pico súbito de 100 threads em 5 segundos para avaliar a resiliência.
       </elementProp>
     </TestPlan>
     <hashTree>
-      <!-- ==================== TESTE DE PICO (SPIKE) ==================== -->
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Teste de Pico (Spike) - Compra de Passagem" enabled="true">
-        <stringProp name="ThreadGroup.comments">Pico súbito de 100 threads em 5 segundos.
-Simula aumento repentino de tráfego para avaliar resiliência e tempo de recuperação.</stringProp>
+      <!-- ==================== SPIKE TEST ==================== -->
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Spike Test - Flight Purchase" enabled="true">
+        <stringProp name="ThreadGroup.comments">Sudden spike of 100 threads in 5 seconds.
+Simulates sudden traffic increase to evaluate resilience and recovery time.</stringProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -79,8 +79,8 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
         </HeaderManager>
         <hashTree/>
 
-        <!-- CSV Data Set para variar dados -->
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Dados de Passageiros" enabled="true">
+        <!-- CSV Data Set for test data variation -->
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Passenger Data" enabled="true">
           <stringProp name="filename">test-data/passengers.csv</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="variableNames">NOME,ENDERECO,CIDADE,ESTADO,CEP,TIPO_CARTAO,NUMERO_CARTAO</stringProp>
@@ -92,8 +92,8 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
         </CSVDataSet>
         <hashTree/>
 
-        <!-- ========== STEP 1: Página Inicial ========== -->
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="01 - Página Inicial" enabled="true">
+        <!-- ========== STEP 1: Home Page ========== -->
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="01 - Home Page" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
@@ -101,11 +101,11 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
           <stringProp name="HTTPSampler.method">GET</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validar Página Inicial" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validate Home Page" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="0">Welcome to the Simple Travel Agency</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">Página inicial não carregou corretamente</stringProp>
+            <stringProp name="Assertion.custom_message">Home page did not load correctly</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
@@ -113,8 +113,8 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
           <hashTree/>
         </hashTree>
 
-        <!-- ========== STEP 2: Buscar Voos ========== -->
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="02 - Buscar Voos (POST)" enabled="true">
+        <!-- ========== STEP 2: Search Flights ========== -->
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="02 - Search Flights (POST)" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="fromPort" elementType="HTTPArgument">
@@ -137,11 +137,11 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
           <stringProp name="HTTPSampler.method">POST</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validar Lista de Voos" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validate Flight List" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="0">Flights from Paris to London</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">Lista de voos não retornada</stringProp>
+            <stringProp name="Assertion.custom_message">Flight list not returned</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
@@ -149,8 +149,8 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
           <hashTree/>
         </hashTree>
 
-        <!-- ========== STEP 3: Selecionar Voo ========== -->
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="03 - Selecionar Voo (POST)" enabled="true">
+        <!-- ========== STEP 3: Select Flight ========== -->
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="03 - Select Flight (POST)" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="flight" elementType="HTTPArgument">
@@ -194,11 +194,11 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
           <stringProp name="HTTPSampler.method">POST</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validar Página de Compra" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validate Purchase Page" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="0">Please submit the form below to purchase</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">Página de compra não carregou</stringProp>
+            <stringProp name="Assertion.custom_message">Purchase page did not load</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
@@ -206,8 +206,8 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
           <hashTree/>
         </hashTree>
 
-        <!-- ========== STEP 4: Confirmar Compra ========== -->
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="04 - Confirmar Compra (POST)" enabled="true">
+        <!-- ========== STEP 4: Confirm Purchase ========== -->
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="04 - Confirm Purchase (POST)" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="inputName" elementType="HTTPArgument">
@@ -286,11 +286,11 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
           <stringProp name="HTTPSampler.method">POST</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validar Confirmação" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validate Confirmation" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="0">Thank you for your purchase today</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">Compra não confirmada com sucesso</stringProp>
+            <stringProp name="Assertion.custom_message">Purchase not confirmed successfully</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
@@ -298,7 +298,7 @@ Simula aumento repentino de tráfego para avaliar resiliência e tempo de recupe
           <hashTree/>
         </hashTree>
 
-        <!-- Think Time entre passos -->
+        <!-- Think Time between steps -->
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Think Time (500ms)" enabled="true">
           <stringProp name="ConstantTimer.delay">500</stringProp>
         </ConstantTimer>

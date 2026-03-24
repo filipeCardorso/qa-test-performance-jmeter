@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Compra de Passagem - Teste de Carga" enabled="true">
-      <stringProp name="TestPlan.comments">Teste de carga para o fluxo de compra de passagem aérea no BlazDemo.
-Critério de aceitação: 250 req/s com p90 &lt; 2s</stringProp>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Flight Purchase - Load Test" enabled="true">
+      <stringProp name="TestPlan.comments">Load test for the flight purchase flow on BlazDemo.
+Acceptance criteria: 250 req/s with p90 &lt; 2s</stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
@@ -22,7 +22,7 @@ Critério de aceitação: 250 req/s com p90 &lt; 2s</stringProp>
       </elementProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Teste de Carga - Compra de Passagem">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Load Test - Flight Purchase">
         <intProp name="ThreadGroup.num_threads">50</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -67,7 +67,7 @@ Critério de aceitação: 250 req/s com p90 &lt; 2s</stringProp>
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Dados de Passageiros">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Passenger Data">
           <stringProp name="filename">test-data/passengers.csv</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="variableNames">NOME,ENDERECO,CIDADE,ESTADO,CEP,TIPO_CARTAO,NUMERO_CARTAO</stringProp>
@@ -79,7 +79,7 @@ Critério de aceitação: 250 req/s com p90 &lt; 2s</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
         </CSVDataSet>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="01 - Página Inicial">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="01 - Home Page">
           <stringProp name="HTTPSampler.path">/</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
@@ -88,18 +88,18 @@ Critério de aceitação: 250 req/s com p90 &lt; 2s</stringProp>
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validar Página Inicial">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validate Home Page">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="1014539379">Welcome to the Simple Travel Agency</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">Página inicial não carregou corretamente</stringProp>
+            <stringProp name="Assertion.custom_message">Home page did not load correctly</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="02 - Buscar Voos (POST)">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="02 - Search Flights (POST)">
           <stringProp name="HTTPSampler.path">/reserve.php</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
@@ -123,18 +123,18 @@ Critério de aceitação: 250 req/s com p90 &lt; 2s</stringProp>
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validar Lista de Voos">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validate Flight List">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="1905024175">Flights from Paris to London</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">Lista de voos não retornada</stringProp>
+            <stringProp name="Assertion.custom_message">Flight list not returned</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="03 - Selecionar Voo (POST)">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="03 - Select Flight (POST)">
           <stringProp name="HTTPSampler.path">/purchase.php</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
@@ -179,18 +179,18 @@ Critério de aceitação: 250 req/s com p90 &lt; 2s</stringProp>
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validar Página de Compra">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validate Purchase Page">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="264540732">Please submit the form below to purchase</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">Página de compra não carregou</stringProp>
+            <stringProp name="Assertion.custom_message">Purchase page did not load</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="04 - Confirmar Compra (POST)">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="04 - Confirm Purchase (POST)">
           <stringProp name="HTTPSampler.path">/confirmation.php</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
@@ -270,11 +270,11 @@ Critério de aceitação: 250 req/s com p90 &lt; 2s</stringProp>
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validar Confirmação">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Validate Confirmation">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="2037238721">Thank you for your purchase today</stringProp>
             </collectionProp>
-            <stringProp name="Assertion.custom_message">Compra não confirmada com sucesso</stringProp>
+            <stringProp name="Assertion.custom_message">Purchase not confirmed successfully</stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
