@@ -1,0 +1,11 @@
+NOME,ENDERECO,CIDADE,ESTADO,CEP,TIPO_CARTAO,NUMERO_CARTAO
+"João Silva","Rua A 123","São Paulo","SP","01001000","visa","4111111111111111"
+"Maria Santos","Av B 456","Rio de Janeiro","RJ","20040020","amex","371449635398431"
+"Pedro Costa","Rua C 789","Belo Horizonte","MG","30130000","visa","4012888888881881"
+"Ana Oliveira","Av D 321","Curitiba","PR","80010000","dinersclub","30569309025904"
+"Carlos Souza","Rua E 654","Porto Alegre","RS","90010000","visa","4222222222222"
+"Lucia Ferreira","Av F 987","Salvador","BA","40010000","amex","378282246310005"
+"Roberto Lima","Rua G 147","Brasília","DF","70040000","visa","4111111111111111"
+"Fernanda Rocha","Av H 258","Recife","PE","50010000","dinersclub","38520000023237"
+"Paulo Mendes","Rua I 369","Fortaleza","CE","60010000","visa","4012888888881881"
+"Juliana Alves","Av J 741","Manaus","AM","69010000","amex","371449635398431"
